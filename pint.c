@@ -4,9 +4,10 @@
 #include "monty.h"
 
 /**
- * pint - prints value at the top
- * @stack: stack
+ * pint - prints top value
+ * @stack: stack 
  * @line_cnt: number of lines
+ *
  * Return: void
  */
 void pint(stack_t **stack, unsigned int line_cnt)
