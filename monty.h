@@ -34,22 +34,22 @@ typedef struct instruction_s
 
 extern int status;
 
-void push(stack_t **stack, unsigned int line_cnt);
-void pall(stack_t **stack, unsigned int line_cnt);
-void pint(stack_t **stack, unsigned int line_cnt);
-void swap(stack_t **stack, unsigned int line_cnt);
-void pop(stack_t **stack, unsigned int line_cnt);
-void nop(stack_t **stack, unsigned int line_cnt);
+void _push(stack_t **stack, unsigned int line_cnt);
+void _pall(stack_t **stack, unsigned int line_cnt);
+void _pint(stack_t **stack, unsigned int line_cnt);
+void _swap(stack_t **stack, unsigned int line_cnt);
+void _pop(stack_t **stack, unsigned int line_cnt);
+void _nop(stack_t **stack, unsigned int line_cnt);
 void _div(stack_t **stack, unsigned int line_cnt);
 void _add(stack_t **stack, unsigned int line_cnt);
 void _sub(stack_t **stack, unsigned int line_cnt);
 void _mul(stack_t **stack, unsigned int line_cnt);
-void mod(stack_t **stack, unsigned int line_cnt);
-void pchar(stack_t **stack, unsigned int line_cnt);
-void pstr(stack_t **stack, unsigned int line_cnt);
-void rotl(stack_t **stack, unsigned int line_count);
-void rotr(stack_t **stack, unsigned int line_count);
-void opcode(stack_t **stack, char *str, unsigned int line_cnt);
+void _mod(stack_t **stack, unsigned int line_cnt);
+void _pchar(stack_t **stack, unsigned int line_cnt);
+void _pstr(stack_t **stack, unsigned int line_cnt);
+void _rotl(stack_t **stack, unsigned int line_count);
+void _rotr(stack_t **stack, unsigned int line_count);
+void _opcode(stack_t **stack, char *str, unsigned int line_cnt);
 
 int is_digit(char *string);
 int isnumber(char *str);
@@ -60,21 +60,21 @@ void free_stack(stack_t *stack);
 size_t print_stack(const stack_t *stack);
 
 #define INSTRUCTIONS { \
-		{"push", push},\
-		{"pall", pall},\
-		{"pint", pint},\
-		{"pop", pop},\
-		{"swap", swap},\
-		{"nop", nop},\
+		{"push", _push},\
+		{"pall", _pall},\
+		{"pint", _pint},\
+		{"pop", _pop},\
+		{"swap", _swap},\
+		{"nop", _nop},\
 		{"div", _div},\
 		{"mul", _mul},\
 		{"add", _add},\
 		{"sub", _sub},\
-		{"mod", mod},\
-		{"pchar", pchar},\
-		{"pstr", pstr},\
-		{"rotl", rotl},\
-		{"rotr", rotr},\
+		{"mod", _mod},\
+		{"pchar", _pchar},\
+		{"pstr", _pstr},\
+		{"rotl", _rotl},\
+		{"rotr", _rotr},\
 		{NULL, NULL} \
 	}
 /**
