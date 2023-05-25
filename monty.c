@@ -1,51 +1,33 @@
 #include "monty.h"
-#include <stdio.h>
-#define _GNU_SOURCE
-#include <stdlib.h>
 
-bus_t bus = {NULL, NULL, NULL, 0};
+FILE *files;
+char *line_buf;
+int is_queue;
 
 /**
-* main - function for monty code interpreter
-* @argc: argument count
-* @argv: argument value
-*
-* Return: 0 on success
-*/
-int main(int argc, char *argv[])
+ * main - entry point for "monty," and interprets .m files
+ * @argc: number of command line arguments
+ * @argv: array of strings containing command line arguments
+ * Return: 0 on success. all failure cases handled with exit()
+ * directly from functions.
+ */
+int main(int argc, char **argv)
 {
-	char *content;
-	FILE *file;
-	size_t size = 0;
-	ssize_t read_line = 1;
-	stack_t *stack = NULL;
-	unsigned int counter = 0;
+	files = NULL;
 
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	file = fopen(argv[1], "r");
-	bus.file = file;
-	if (!file)
+
+	files = fopen(argv[1], "r");
+	if (!files)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	while (read_line > 0)
-	{
-		content = NULL;
-		read_line = getline(&content, &size, file);
-		bus.content = content;
-		counter++;
-		if (read_line > 0)
-		{
-			execute(content, &stack, counter, file);
-		}
-		free(content);
-	}
-	free_stack(stack);
-	fclose(file);
-return (0);
+
+	parse_loop(files);
+	return (0);
 }
